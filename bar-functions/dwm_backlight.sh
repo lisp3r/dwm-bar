@@ -11,5 +11,3 @@ icon=""
 dwm_backlight () {
     printf "%s%s %.0f%s\n" "$SEP1" "$icon" "$(xbacklight)" "$SEP2"
 }
-
-dwm_backlight

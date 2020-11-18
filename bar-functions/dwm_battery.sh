@@ -39,5 +39,3 @@ dwm_battery () {
     printf "%s" "$SEP2"
 
 }
-
-dwm_battery

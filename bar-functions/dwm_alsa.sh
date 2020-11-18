@@ -20,5 +20,3 @@ dwm_alsa () {
     fi
     printf "%s" "$SEP2"
 }
-
-dwm_alsa

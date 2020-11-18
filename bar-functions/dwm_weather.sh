@@ -65,5 +65,3 @@ dwm_weather() {
     printf "%s %s" $icon $weather_cel
     printf "%s" "$SEP2"
 }
-
-dwm_weather

@@ -20,5 +20,3 @@ dwm_keyboard () {
     printf "%s %s" $icon "${keyboard_states[$key_mask]}"
     printf "%s" "$SEP2"
 }
-
-dwm_keyboard

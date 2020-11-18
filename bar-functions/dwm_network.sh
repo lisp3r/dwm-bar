@@ -17,5 +17,3 @@ dwm_network() {
         printf "%s" "$SEP2"
     fi
 }
-
-dwm_network

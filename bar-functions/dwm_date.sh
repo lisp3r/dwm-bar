@@ -12,5 +12,3 @@ dwm_date () {
     printf "%s %s" $date_icon "$(date "+%a %d-%m-%y %T")"
     printf "%s" "$SEP2"
 }
-
-dwm_date

@@ -33,5 +33,3 @@ dwm_cmus () {
         printf "%s%s\n" "$SHUFFLE" "$SEP2"
     fi
 }
-
-dwm_cmus
