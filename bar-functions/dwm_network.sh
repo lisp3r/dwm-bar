@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# A dwm_bar function to show the current network connection/SSID, private IP, and public IP
+# A dwm_bar function to show the current network connection
 # Joe Standring <git@joestandring.com>
 # lisp3r <git@lisp3r.com>
 # GNU GPLv3
