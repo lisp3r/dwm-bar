@@ -2,6 +2,7 @@
 
 # A dwm_bar function to show the master volume of ALSA
 # Joe Standring <git@joestandring.com>
+# lisp3r <git@lisp3r.com>
 # GNU GPLv3
 
 # Dependencies: alsa-utils
