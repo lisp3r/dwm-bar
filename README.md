@@ -113,17 +113,11 @@ If you would like your bar to be displayed when X starts, add this to your `.xin
 
 ## Customizing
 
-dwm-bar is completley modular, meaning you can mix and match functions to your hearts content. It's functions are located in the bar-functions/ subdirectory and included in dwm_bar.sh
-If you want to make your own function, for example dwm_myfunction.sh, you should create it in the bar-functions/ subdirectory before including it in dwm_bar.sh and adding it to the xsetroot command:
+dwm-bar is completley modular, meaning you can mix and match functions to your hearts content. It's functions are located in the `bar-functions/` subdirectory and included in `dwm_bar.sh`.
 
-    # Import the modules
-    . "$DIR/bar-functions/dwm_myfucntion"
+If you want to make your own function, for example `dwm_myfunction.sh`, you should create it in the `bar-functions/` subdirectory before including it in `dwm_bar.sh`:
 
-    while true
-    do
-        xsetroot -name "$(dwm_myfunction)"
-        sleep 1
-    done
+    load_module 'dwm_myfucntion'
 
 ## Acknowledgements
 
