@@ -6,21 +6,18 @@
 
 # Dependencies: alsa-utils
 
-declare -A batt_states=( ["Unknown"]="unkn"
-                         ["Charging"]="chrg"
-                         ["Discharging"]="dischr"
-                         ["Not charging"]="nchrg"
-                         ["Full"]="full")
+icon_mute=""
+icon_sound=""
 
-bat_icon=""
-
-dwm_battery () {
-    bat_st="$(cat /sys/class/power_supply/BAT0/status)"
-    bat_cap="$(cat /sys/class/power_supply/BAT0/capacity)"
-
+dwm_alsa () {
+    VOL=$(amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/")
     printf "%s" "$SEP1"
-    printf "%s %s%% %s" $bat_icon "${bat_cap}" "${batt_states[$bat_st]}"
+    if [ "$VOL" -eq 0 ]; then
+        printf $icon_mute
+    else
+        printf "%s %s%%" $icon_sound "$VOL"
+    fi
     printf "%s" "$SEP2"
 }
 
-dwm_battery
+dwm_alsa
