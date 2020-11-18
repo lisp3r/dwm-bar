@@ -4,12 +4,64 @@
 # lisp3r
 # GNU GPLv3
 
-OUTPUT_FILE="/tmp/.wthr_output"
+OUTPUT_DIR="/tmp"
+WEATHER_DESCR=$OUTPUT_DIR/weather_descr
+WEATHER_CEL=$OUTPUT_DIR/weather_cel
+
+declare -A weather_day=( ["Unknown"]=""
+                         ["Sunny"]=""
+                         ["PartlyCloudy"]=""
+                         ["Cloudy"]=""
+                         ["VeryCloudy"]=""
+                         ["Fog"]="",
+                         ["LightShowers"]="",
+                         ["LightSleetShowers"]="",
+                         ["LightSnowShowers"]="",
+                         ["ThunderyShowers"]="",
+                         ["HeavyShowers"]="",
+                         ["HeavySnowShowers"]="",
+                         ["ThunderySnowShowers"]="",
+                         ["LightSnow"]="",
+                         ["HeavySnow"]="",
+                         ["LightRain" ]="",
+                         ["LightSleet"]="",
+                         ["HeavyRain"]="",
+                         ["ThunderyHeavyRain"]="",
+                        )
+
+declare -A weather_night=( ["Unknown"]=""
+                         ["Sunny"]=""
+                         ["PartlyCloudy"]=""
+                         ["Cloudy"]=""
+                         ["VeryCloudy"]=""
+                         ["Fog"]="",
+                         ["LightShowers"]="",
+                         ["LightSleetShowers"]="",
+                         ["LightSnowShowers"]="",
+                         ["ThunderyShowers"]="",
+                         ["HeavyShowers"]="",
+                         ["HeavySnowShowers"]="",
+                         ["ThunderySnowShowers"]="",
+                         ["LightSnow"]="",
+                         ["HeavySnow"]="",
+                         ["LightRain" ]="",
+                         ["LightSleet"]="",
+                         ["HeavyRain"]="",
+                         ["ThunderyHeavyRain"]="",
+                        )
 
 dwm_weather() {
-    printf "%s" "$SEP1"
-    printf "%s" "$(cat $OUTPUT_FILE)"
-    printf "%s\n" "$SEP2"
-}
 
-dwm_weather
+    weather_descr=`cat $WEATHER_DESCR`
+    weather_cel=`cat $WEATHER_CEL`
+
+    curr_hour=`date '+%H'`
+    if [[ $curr_hour -lt 21 && $curr_hour -gt 6 ]]; then
+        icon=weather_day[weather_descr]
+    else
+        icon=weather_night[weather_descr]
+
+    printf "%s" "$SEP1"
+    printf "%s %s" $icon $weather_cel
+    printf "%s" "$SEP2"
+}

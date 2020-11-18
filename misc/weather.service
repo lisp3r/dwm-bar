@@ -1,0 +1,9 @@
+[Unit]
+Description=Weather service
+
+[Service]
+Type=simple
+ExecStart=/opt/dwm-bar/misc/weather.sh
+
+[Install]
+WantedBy=timers.target

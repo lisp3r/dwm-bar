@@ -53,7 +53,14 @@ Displays the current date and time
 
 Displays the current weather provided by [wttr.in](https://wttr.in)
 
-    ☀ +20°C
+     +4°C
+
+Make it works:
+
+    cd misc
+    cp weather.service weather.timer ~/.config/systemd/user
+    systemctl --user enable weather.service weather.timer
+    systemctl --user start weather.service weather.timer
 
 ### dwm_network
 
