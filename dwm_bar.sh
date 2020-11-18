@@ -26,7 +26,7 @@ load_module() {
     func=`declare -f $1 > /dev/null; echo $?`
 
     if [ ! -z "$func" ]; then
-       BAR="${BAR}$($1)"
+       BAR="$($1)${BAR}"
     fi
 }
 
