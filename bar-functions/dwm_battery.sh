@@ -2,6 +2,7 @@
 
 # A dwm_bar function to read the battery level and status
 # Joe Standring <git@joestandring.com>
+# lisp3r <git@lisp3r.com>
 # GNU GPLv3
 
 declare -A batt_states=( ["Unknown"]="unkn"
