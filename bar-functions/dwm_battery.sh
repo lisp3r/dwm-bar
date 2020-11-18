@@ -1,26 +1,24 @@
 #!/bin/sh
 
 # A dwm_bar function to read the battery level and status
-# Joe Standring <git@joestandring.com>
+# lisp3r
 # GNU GPLv3
 
+declare -A batt_states=( ["Unknown"]="unkn"
+                         ["Charging"]="chrg"
+                         ["Discharging"]="dischr"
+                         ["Not charging"]="nchrg"
+                         ["Full"]="full")
+
 dwm_battery () {
-    # Change BAT1 to whatever your battery is identified as. Typically BAT0 or BAT1
-    CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
-    STATUS=$(cat /sys/class/power_supply/BAT1/status)
+    bat_st="$(cat /sys/class/power_supply/BAT0/status)"
+    bat_cap="$(cat /sys/class/power_supply/BAT0/capacity)"
 
     printf "%s" "$SEP1"
-    if [ "$IDENTIFIER" = "unicode" ]; then
-        if [ "$STATUS" = "Charging" ]; then
-            printf "🔌 %s%% %s" "$CHARGE" "$STATUS"
-        else
-            printf "🔋 %s%% %s" "$CHARGE" "$STATUS"
-        fi
-    else
-        printf "BAT %s%% %s" "$CHARGE" "$STATUS"
-    fi
+
+    printf "%s%% %s" "${bat_cap}" "${batt_states[$bat_st]}"
+
     printf "%s\n" "$SEP2"
 }
 
 dwm_battery
-
