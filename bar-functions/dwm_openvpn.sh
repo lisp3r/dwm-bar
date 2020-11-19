@@ -18,3 +18,5 @@ dwm_openvpn() {
         printf "%s" "$SEP2"
     fi
 }
+
+dwm_openvpn
