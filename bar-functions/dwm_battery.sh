@@ -17,9 +17,11 @@ icon_half=""
 icon_quarter=""
 icon_empty=""
 
+BAT_STAT="/sys/class/power_supply/BAT0"
+
 dwm_battery () {
-    bat_st="$(cat /sys/class/power_supply/BAT0/status)"
-    bat_cap="$(cat /sys/class/power_supply/BAT0/capacity)"
+    bat_st=`cat $BAT_STAT/status`
+    bat_cap=`cat $BAT_STAT/capacity`
 
     if [[ bat_cap -le 10 ]]; then
         icon=$icon_empty
