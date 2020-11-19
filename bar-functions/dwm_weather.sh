@@ -4,51 +4,12 @@
 # lisp3r
 # GNU GPLv3
 
+
 OUTPUT_DIR="/tmp"
 WEATHER_DESCR=$OUTPUT_DIR/weather_descr
 WEATHER_CEL=$OUTPUT_DIR/weather_cel
 
-declare -A weather_day=( ["Unknown"]=""
-                         ["Sunny"]=""
-                         ["PartlyCloudy"]=""
-                         ["Cloudy"]=""
-                         ["VeryCloudy"]=""
-                         ["Fog"]="",
-                         ["LightShowers"]="",
-                         ["LightSleetShowers"]="",
-                         ["LightSnowShowers"]="",
-                         ["ThunderyShowers"]="",
-                         ["HeavyShowers"]="",
-                         ["HeavySnowShowers"]="",
-                         ["ThunderySnowShowers"]="",
-                         ["LightSnow"]="",
-                         ["HeavySnow"]="",
-                         ["LightRain" ]="",
-                         ["LightSleet"]="",
-                         ["HeavyRain"]="",
-                         ["ThunderyHeavyRain"]="",
-                        )
-
-declare -A weather_night=( ["Unknown"]=""
-                         ["Sunny"]=""
-                         ["PartlyCloudy"]=""
-                         ["Cloudy"]=""
-                         ["VeryCloudy"]=""
-                         ["Fog"]="",
-                         ["LightShowers"]="",
-                         ["LightSleetShowers"]="",
-                         ["LightSnowShowers"]="",
-                         ["ThunderyShowers"]="",
-                         ["HeavyShowers"]="",
-                         ["HeavySnowShowers"]="",
-                         ["ThunderySnowShowers"]="",
-                         ["LightSnow"]="",
-                         ["HeavySnow"]="",
-                         ["LightRain" ]="",
-                         ["LightSleet"]="",
-                         ["HeavyRain"]="",
-                         ["ThunderyHeavyRain"]="",
-                        )
+ICONS="$DIR/misc/weather_icons.json"
 
 dwm_weather() {
     weather_descr=`cat $WEATHER_DESCR`
@@ -56,12 +17,14 @@ dwm_weather() {
 
     curr_hour=`date '+%H'`
     if [[ $curr_hour -lt 21 && $curr_hour -gt 6 ]]; then
-        icon=${weather_day[$weather_descr]}
+        icon=`cat $ICONS | jq ".weather.weather_day.\"$weather_descr\"" | tr -d '"'`
+        #icon=${weather_day[$weather_descr]}
     else
-        icon=${weather_night[$weather_descr]}
+        #icon=${weather_night[$weather_descr]}
+        icon=`cat $ICONS | jq ".weather.weather_night.\"$weather_descr\""`
     fi
 
     printf "%s" "$SEP1"
-    printf "%s %s" $icon $weather_cel
+    printf "%s %s°C" $icon $weather_cel
     printf "%s" "$SEP2"
 }
