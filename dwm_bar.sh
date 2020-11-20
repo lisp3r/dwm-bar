@@ -16,6 +16,8 @@ DIR=$(dirname "$LOC")
 
 MODULE_FOLDER="$DIR/bar-functions"
 
+MODULES=()
+
 # Change the charachter(s) used to seperate modules. If two are used, they will be placed at the start and end.
 
 export SEP1=" "
@@ -26,8 +28,17 @@ load_module() {
     func=`declare -f $1 > /dev/null; echo $?`
 
     if [ ! -z "$func" ]; then
-       BAR="$($1)${BAR}"
+        MODULES+=($1)
+       #BAR='$('$1')'${BAR}
     fi
+}
+
+get_state() {
+    BAR_STRING=""
+    for module in "${MODULES[@]}"
+    do
+        BAR_STRING=$($module)${BAR_STRING}
+    done
 }
 
 # Import the modules
@@ -42,9 +53,9 @@ load_module 'dwm_openvpn'
 load_module 'dwm_network'
 
 # Update dwm status bar every second
-
 while true
 do
-    xsetroot -name "$BAR"
+    get_state
+    xsetroot -name "$BAR_STRING"
     sleep 1
 done

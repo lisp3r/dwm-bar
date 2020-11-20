@@ -24,7 +24,9 @@ dwm_weather() {
         icon=`cat $ICONS | jq ".weather.weather_night.\"$weather_descr\""`
     fi
 
-    printf "%s" "$SEP1"
-    printf "%s %s°C" $icon $weather_cel
-    printf "%s" "$SEP2"
+    if [ ! -z "$weather_descr" ]; then
+        printf "%s" "$SEP1"
+        printf "%s %s°C" $icon $weather_cel
+        printf "%s" "$SEP2"
+    fi
 }
