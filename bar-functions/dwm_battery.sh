@@ -25,6 +25,9 @@ dwm_battery () {
 
     if [[ bat_cap -le 10 ]]; then
         icon=$icon_empty
+        if [[ $bat_st != 'Charging' ]]; then
+            notify-send "               You are about to loosing your job! Plug in a power cabel!!"
+        fi
     elif [[ bat_cap -gt 10 && bat_cap -le 25 ]]; then
         icon=$icon_quarter
     elif [[ bat_cap -gt 25 && bat_cap -le 50 ]]; then
