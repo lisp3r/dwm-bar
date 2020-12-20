@@ -5,10 +5,13 @@
 # GNU GPLv3
 
 # Date is formatted like like this: "[Mon 01-01-00 00:00:00]"
-date_icon=""
 
 dwm_date () {
+    date_icon=
+
     printf "%s" "$SEP1"
     printf "%s %s" $date_icon "$(date "+%a %d-%m-%y %T")"
     printf "%s" "$SEP2"
 }
+
+dwm_date

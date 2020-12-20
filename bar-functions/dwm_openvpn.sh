@@ -4,12 +4,12 @@
 # lisp3r <git@lisp3r.com>
 # GNU GPLv3
 
-icon=""
-
-# Add your VPN device here
-vpn_device="tun"
-
 dwm_openvpn() {
+    icon=
+
+    # Add your VPN device here
+    vpn_device="tun"
+
     vpn=$(nmcli connection show | grep -v -e "--" | grep -v NAME | awk '{ if ($3 == "tun") {print $3} }')
 
     if [[ $vpn == $vpn_device ]]; then

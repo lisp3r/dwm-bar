@@ -16,13 +16,13 @@ dwm_cmus () {
         SHUFFLE=$(cmus-remote -Q | grep -a '^set shuffle' | awk '{gsub("set shuffle ", "");print}')
 
         if [ "$STATUS" = "playing" ]; then
-            STATUS=""
+            STATUS=
         else
-            STATUS=""
+            STATUS=
         fi
 
         if [ "$SHUFFLE" = "true" ]; then
-            SHUFFLE=""
+            SHUFFLE=
         else
             SHUFFLE=""
         fi
@@ -33,3 +33,5 @@ dwm_cmus () {
         printf "%s%s\n" "$SHUFFLE" "$SEP2"
     fi
 }
+
+dwm_cmus

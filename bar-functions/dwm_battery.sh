@@ -5,21 +5,21 @@
 # lisp3r <git@lisp3r.com>
 # GNU GPLv3
 
-declare -A batt_states=( ["Unknown"]="unkn"
+dwm_battery () {
+    declare -A batt_states=( ["Unknown"]="unkn"
                          ["Charging"]="chrg"
                          ["Discharging"]="dischr"
                          ["Not charging"]="nchrg"
                          ["Full"]="full")
 
-icon_full=""
-icon_three_quarters=""
-icon_half=""
-icon_quarter=""
-icon_empty=""
+    icon_full=
+    icon_three_quarters=
+    icon_half=
+    icon_quarter=
+    icon_empty=
 
-BAT_STAT="/sys/class/power_supply/BAT0"
+    BAT_STAT="/sys/class/power_supply/BAT0"
 
-dwm_battery () {
     bat_st=`cat $BAT_STAT/status`
     bat_cap=`cat $BAT_STAT/capacity`
 
@@ -44,3 +44,5 @@ dwm_battery () {
     printf "%s" "$SEP2"
 
 }
+
+dwm_battery

@@ -6,9 +6,9 @@
 # GNU GPLv3
 
 # Dependencies: nmcli
- wifi_icon=""
 
 dwm_network() {
+    wifi_icon=
     wifi=$(nmcli connection show | grep -v -e "--" | grep -v NAME | awk '{ if ($3 == "wifi") {print $1} }')
 
     if [ ! -z "$wifi" ]; then
@@ -17,3 +17,5 @@ dwm_network() {
         printf "%s" "$SEP2"
     fi
 }
+
+dwm_network

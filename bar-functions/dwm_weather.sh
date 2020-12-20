@@ -21,7 +21,7 @@ dwm_weather() {
         #icon=${weather_day[$weather_descr]}
     else
         #icon=${weather_night[$weather_descr]}
-        icon=`cat $ICONS | jq ".weather.weather_night.\"$weather_descr\""`
+        icon=`cat $ICONS | jq ".weather.weather_night.\"$weather_descr\"" | tr -d '"'`
     fi
 
     if [ ! -z "$weather_descr" ]; then
@@ -30,3 +30,5 @@ dwm_weather() {
         printf "%s" "$SEP2"
     fi
 }
+
+dwm_weather
