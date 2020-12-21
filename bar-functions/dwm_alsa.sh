@@ -12,8 +12,9 @@ dwm_alsa () {
     icon_sound=
 
     VOL=$(amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/")
+    OFF=$(amixer get Master | tail -n1 | grep off)
     printf "%s" "$SEP1"
-    if [ "$VOL" -eq 0 ]; then
+    if [[ "$VOL" -eq 0 ]] || [[ ! -z $OFF ]]; then
         printf $icon_mute
     else
         printf "%s %s%%" $icon_sound "$VOL"
