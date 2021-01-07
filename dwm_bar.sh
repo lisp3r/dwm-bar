@@ -52,10 +52,6 @@ load_module 'dwm_bluetooth'
 load_module 'dwm_openvpn'
 load_module 'dwm_network'
 
-# Update dwm status bar every second
-
-declare -A keyboard_states=( ["00000000"]="en"
-                             ["00001000"]="ru")
 
 while true
 do
