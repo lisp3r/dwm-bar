@@ -14,8 +14,9 @@ dwm_openvpn() {
 
     if [[ $vpn == $vpn_device ]]; then
         network_aval=`ping ns1.google.com -c 1 &> /dev/null`
+        res=$(echo $?)
         printf "%s" "$SEP1"
-        if [ $network_aval -eq 0 ]; then
+        if [ $res -eq 0 ]; then
             ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')
             printf "%s %s | %s" $icon $vpn $ip
         else
