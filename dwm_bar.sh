@@ -49,9 +49,9 @@ load_module 'dwm_keyboard'
 load_module 'dwm_weather'
 load_module 'dwm_date'
 load_module 'dwm_bluetooth'
-load_module 'dwm_openvpn'
+load_module 'dwm_docker'
+load_module 'dwm_wireguard'
 load_module 'dwm_network'
-
 
 while true
 do
