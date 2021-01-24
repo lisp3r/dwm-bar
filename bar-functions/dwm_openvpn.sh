@@ -5,22 +5,24 @@
 # GNU GPLv3
 
 dwm_openvpn() {
-    icon=
+    openvpn_icon=
+    no_connection_icon=
 
-    # Add your VPN device here
-    vpn_device="tun"
+    service_name="openvpn-client@motayloremote.service"
+    interface="tun0"
 
-    vpn=$(nmcli connection show | grep -v -e "--" | grep -v NAME | awk '{ if ($3 == "tun") {print $3} }')
+    systemctl is-active --quiet "$service_name"
+    res=$(echo $?)
 
-    if [[ $vpn == $vpn_device ]]; then
+    if [ $res -eq 0 ]; then
         network_aval=`ping ns1.google.com -c 1 &> /dev/null`
         res=$(echo $?)
         printf "%s" "$SEP1"
         if [ $res -eq 0 ]; then
-            ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')
-            printf "%s %s | %s" $icon $vpn $ip
+            ip=`ifconfig $interface | grep inet | grep -v inet6 | awk '{ print $2 }'`
+            printf "%s %s" $openvpn_icon $ip
         else
-            printf "%s %s | %s" $icon $vpn "no connection"
+            printf "%s %s" $openvpn_icon $no_connection_icon
         fi
         printf "%s" "$SEP2"
     fi
