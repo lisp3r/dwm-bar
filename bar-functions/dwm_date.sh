@@ -10,9 +10,9 @@ dwm_date () {
     date_icon=
     time_icon=
 
-    date_time=`date "+%b %d (%A) |%T"`
-    date=`echo "$date_time" | awk -F '|' '{ print $1 }'`
-    time=`echo "$date_time" | awk -F '|' '{ print $2 }'`
+    date_time=$(date "+%b %d (%A) |%T")
+    date=$(echo "$date_time" | awk -F '|' '{ print $1 }')
+    time=$(echo "$date_time" | awk -F '|' '{ print $2 }')
 
     printf "%s" "$SEP1"
     printf "%s %s" $date_icon "$date" $time_icon "$time"

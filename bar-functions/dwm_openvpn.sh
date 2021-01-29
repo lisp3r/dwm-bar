@@ -15,11 +15,11 @@ dwm_openvpn() {
     res=$(echo $?)
 
     if [ $res -eq 0 ]; then
-        network_aval=`ping ns1.google.com -c 1 &> /dev/null`
+        network_aval=$(ping ns1.google.com -c 1 &> /dev/null)
         res=$(echo $?)
         printf "%s" "$SEP1"
         if [ $res -eq 0 ]; then
-            ip=`ifconfig $interface | grep inet | grep -v inet6 | awk '{ print $2 }'`
+            ip=$(ifconfig $interface | grep inet | grep -v inet6 | awk '{ print $2 }')
             printf "%s %s" $openvpn_icon $ip
         else
             printf "%s %s" $openvpn_icon $no_connection_icon

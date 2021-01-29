@@ -7,10 +7,10 @@
 
 dwm_battery () {
     declare -A batt_states=( ["Unknown"]="unkn"
-                         ["Charging"]="chrg"
-                         ["Discharging"]="dischr"
-                         ["Not charging"]="nchrg"
-                         ["Full"]="full")
+                             ["Charging"]="chrg"
+                             ["Discharging"]="dischr"
+                             ["Not charging"]="nchrg"
+                             ["Full"]="full")
 
     icon_full=
     icon_three_quarters=
@@ -20,8 +20,8 @@ dwm_battery () {
 
     BAT_STAT="/sys/class/power_supply/BAT0"
 
-    bat_st=`cat $BAT_STAT/status`
-    bat_cap=`cat $BAT_STAT/capacity`
+    bat_st=$(cat $BAT_STAT/status)
+    bat_cap=$(cat $BAT_STAT/capacity)
 
     if [[ bat_cap -le 10 ]]; then
         icon=$icon_empty

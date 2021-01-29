@@ -16,7 +16,7 @@ dwm_wireguard () {
     res=$(echo $?)
 
     if [ $res -eq 0 ]; then
-        network_aval=`ping ns1.google.com -c 1 &> /dev/null`
+        network_aval=$(ping ns1.google.com -c 1 &> /dev/null)
         res=$(echo $?)
         printf "%s" "$SEP1"
         if [ $res -eq 0 ]; then

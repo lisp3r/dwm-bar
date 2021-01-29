@@ -8,7 +8,7 @@
 dwm_nfs() {
     storage_icon=
 
-    shares=`mount -l | grep nfs | mount -l | grep nfs | awk '{ print $3" ("$1")" }'`
+    shares=$(mount -l | grep nfs | mount -l | grep nfs | awk '{ print $3" ("$1")" }')
 
     if [ ! -z "$shares" ]; then
         printf "%s %s %s %s" "$SEP1"
