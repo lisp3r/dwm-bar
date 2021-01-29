@@ -11,11 +11,8 @@ dwm_network() {
     wifi_icon=
     wifi=$(nmcli connection show | grep -v -e "--" | grep -v NAME | awk '{ if ($3 == "wifi") {print $1} }')
 
-    if [ ! -z "$wifi" ]; then
-        printf "%s" "$SEP1"
-        printf "%s %s" $wifi_icon "$wifi"
-        printf "%s" "$SEP2"
-    fi
+    [ -n "$wifi" ] &&
+        printf "%s%s %s%s" "$SEP1" $wifi_icon "$wifi" "$SEP2"
 }
 
 dwm_network

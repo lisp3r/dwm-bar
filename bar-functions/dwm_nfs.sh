@@ -10,11 +10,8 @@ dwm_nfs() {
 
     shares=$(mount -l | grep nfs | mount -l | grep nfs | awk '{ print $3" ("$1")" }')
 
-    if [ ! -z "$shares" ]; then
-        printf "%s %s %s %s" "$SEP1"
-        printf "%s %s" $storage_icon "$shares"
-        printf "%s" "$SEP2"
-    fi
+    [ -n "$shares" ] &&
+        printf "%s%s %s%s" "$SEP1" $storage_icon "$shares" "$SEP2"
 }
 
 dwm_nfs

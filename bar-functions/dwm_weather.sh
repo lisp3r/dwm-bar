@@ -15,20 +15,15 @@ dwm_weather() {
     weather_descr=$(cat $WEATHER_DESCR)
     weather_cel=$(cat $WEATHER_CEL)
 
-    curr_hour=`date '+%H'`
-    if [[ $curr_hour -lt 21 && $curr_hour -gt 6 ]]; then
-        icon=$(cat $ICONS | jq ".weather.weather_day.\"$weather_descr\"" | tr -d '"')
-        #icon=${weather_day[$weather_descr]}
-    else
-        #icon=${weather_night[$weather_descr]}
-        icon=$(cat $ICONS | jq ".weather.weather_night.\"$weather_descr\"" | tr -d '"')
-    fi
+    curr_hour=$(date '+%H')
 
-    if [ ! -z "$weather_descr" ]; then
-        printf "%s" "$SEP1"
-        printf "%s %s°C" $icon $weather_cel
-        printf "%s" "$SEP2"
-    fi
+    time="night"
+    [ "$curr_hour" -lt 21 ] && [ "$curr_hour" -gt 6 ] && time='day'
+
+    weather_icon=$(cat "$ICONS" | jq ".weather.weather_$time.\"$weather_descr\"" | tr -d '"')
+
+    [ -n "$weather_descr" ] && 
+        printf "%s%s %s°C%s" "$SEP1" "$weather_icon" "$weather_cel" "$SEP2"
 }
 
 dwm_weather

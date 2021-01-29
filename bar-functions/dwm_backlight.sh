@@ -7,8 +7,8 @@
 # Dependencies: xbacklight
 
 dwm_backlight () {
-    icon=
-    printf "%s%s %.0f%s" "$SEP1" $icon "$(xbacklight)" "$SEP2"
+    backlight_icon=
+    printf "%s%s %.0f%s" "$SEP1" $backlight_icon "$(xbacklight)" "$SEP2"
 }
 
 dwm_backlight

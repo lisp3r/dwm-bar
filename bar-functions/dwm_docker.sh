@@ -11,15 +11,8 @@ dwm_docker () {
 
     service_name="docker.service"
 
-    systemctl is-active --quiet "$service_name"
-    res=$(echo $?)
-
-    if [ $res -eq 0 ]; then
-        # active
-        printf "%s" "$SEP1"
-        printf "%s" $docker_icon
-        printf "%s" "$SEP2"
-    fi
+    systemctl is-active --quiet "$service_name" &&
+        printf "%s%s%s" "$SEP1" $docker_icon "$SEP2"
 }
 
 dwm_docker

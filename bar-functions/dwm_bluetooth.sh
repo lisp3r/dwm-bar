@@ -14,7 +14,7 @@ dwm_bluetooth() {
     res=$(echo "$stat" | awk -F 'alias=' '{print $2}' | awk -F '"' '{print $2}')
     fi
 
-    if [ ! -z "$res" ]; then
+    if [ -n "$res" ]; then
         printf "%s" "$SEP1"
         printf "%s %s%s" $icon "${res}"
         printf "%s" "$SEP2"

@@ -6,8 +6,7 @@
 # GNU GPLv3
 
 dwm_keyboard () {
-    declare -A keyboard_states=( ["00000000"]="en"
-                                 ["00001000"]="ru")
+    declare -A keyboard_states=( ["00000000"]="en" ["00001000"]="ru")
 
     icon=
 

@@ -12,21 +12,15 @@ dwm_wireguard () {
 
     service_name="wg-quick@wg0.service"
 
-    systemctl is-active --quiet "$service_name"
-    res=$(echo $?)
-
-    if [ $res -eq 0 ]; then
-        network_aval=$(ping ns1.google.com -c 1 &> /dev/null)
-        res=$(echo $?)
+    systemctl is-active --quiet "$service_name" && {
         printf "%s" "$SEP1"
-        if [ $res -eq 0 ]; then
+        # network avaliable?
+        ping ns1.google.com -c 1 &> /dev/null && {
             ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')
-            printf "%s %s" $wireguard_icon $ip
-        else
-            printf "%s %s" $wireguard_icon $no_connection_icon
-        fi
+            printf "%s %s" $wireguard_icon "$ip"
+        } || printf "%s %s" $wireguard_icon $no_connection_icon
         printf "%s" "$SEP2"
-    fi
+    }
 }
 
 dwm_wireguard

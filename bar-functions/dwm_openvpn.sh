@@ -11,21 +11,16 @@ dwm_openvpn() {
     service_name="openvpn-client@motayloremote.service"
     interface="tun0"
 
-    systemctl is-active --quiet "$service_name"
-    res=$(echo $?)
-
-    if [ $res -eq 0 ]; then
-        network_aval=$(ping ns1.google.com -c 1 &> /dev/null)
-        res=$(echo $?)
+    systemctl is-active --quiet "$service_name" && {
         printf "%s" "$SEP1"
-        if [ $res -eq 0 ]; then
+        # network avaliable?
+        ping ns1.google.com -c 1 &> /dev/null && {
             ip=$(ifconfig $interface | grep inet | grep -v inet6 | awk '{ print $2 }')
-            printf "%s %s" $openvpn_icon $ip
-        else
-            printf "%s %s" $openvpn_icon $no_connection_icon
-        fi
+            printf "%s %s" $openvpn_icon "$ip"
+        } || printf "%s %s" $openvpn_icon $no_connection_icon
         printf "%s" "$SEP2"
-    fi
+    }
+
 }
 
 dwm_openvpn
