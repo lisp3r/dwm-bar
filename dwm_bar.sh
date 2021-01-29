@@ -24,19 +24,17 @@ export SEP1=" "
 export SEP2=" "
 
 load_module() {
-    . $MODULE_FOLDER/$1.sh
-    func=`declare -f $1 > /dev/null; echo $?`
+    # shellcheck source=bar-functions/$1.sh
+    . "$MODULE_FOLDER/$1.sh"
 
-    if [ ! -z "$func" ]; then
-        MODULES+=($1)
-       #BAR='$('$1')'${BAR}
-    fi
+    declare -f $1 > /dev/null && {
+        MODULES+=("$1")
+    }
 }
 
 get_state() {
     BAR_STRING=""
-    for module in "${MODULES[@]}"
-    do
+    for module in "${MODULES[@]}"; do
         BAR_STRING=$($module)${BAR_STRING}
     done
 }

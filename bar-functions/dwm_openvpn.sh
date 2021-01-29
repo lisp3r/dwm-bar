@@ -20,7 +20,6 @@ dwm_openvpn() {
         } || printf "%s %s" $openvpn_icon $no_connection_icon
         printf "%s" "$SEP2"
     }
-
 }
 
 dwm_openvpn
